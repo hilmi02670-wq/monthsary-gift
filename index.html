@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Monthsary! ❤️</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #ffe5ec, #ffc2d1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+            color: #4a4a4a;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            text-align: center;
+            max-width: 400px;
+            width: 80%;
+            z-index: 10;
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: scale(1.02);
+        }
+
+        h1 {
+            color: #ff477e;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        .btn {
+            background-color: #ff7096;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 15px;
+            box-shadow: 0 4px 15px rgba(255, 112, 150, 0.4);
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #ff477e;
+        }
+
+        /* Animasi Hati Jatuh */
+        .heart {
+            position: absolute;
+            color: #ff7096;
+            font-size: 20px;
+            animation: fall linear infinite;
+            top: -20px;
+            z-index: 1;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(105vh) rotate(360deg);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Audio Musik (Ganti link src dengan lagu pilihanmu) -->
+    <audio id="bg-music" loop>
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+    </audio>
+
+    <div class="card">
+        <h1>Happy Monthsary, Sayang! ❤️</h1>
+        <p id="pesan">Setiap hari bersamamu adalah hal terindah. Terima kasih sudah menjadi bagian terbaik dalam hidupku. Klik tombol di bawah untuk mendengarkan musik kita!</p>
+        <button class="btn" onclick="putarMusik()">Buka Pesan ✨</button>
+    </div>
+
+    <script>
+        function putarMusik() {
+            var audio = document.getElementById("bg-music");
+            audio.play();
+            
+            // Mengubah teks pesan setelah tombol diklik
+            document.getElementById("pesan").innerHTML = "Aku beruntung memilikimu. *I love you today, tomorrow, and forever.* Happy monthsary! 🌹";
+        }
+
+        // Fungsi membuat animasi hati berjatuhan
+        function buatHati() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = Math.random() * 3 + 2 + 's';
+            heart.style.opacity = Math.random();
+            heart.style.fontSize = Math.random() * 20 + 10 + 'px';
+            
+            document.body.appendChild(heart);
+
+            setTimeout(() => {
+                heart.remove();
+            }, 5000);
+        }
+
+        setInterval(buatHati, 300);
+    </script>
+</body>
+</html>
