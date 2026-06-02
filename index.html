@@ -3,121 +3,242 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy Monthsary! ❤️</title>
+    <title>For My Favorite Person ❤️</title>
+    <!-- Menggunakan Font Google yang Lebih Estetik -->
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Plus+Jakarta+Sans:wght@400;600&display=swap" rel="stylesheet">
+    
     <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
         body {
-            font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #ffe5ec, #ffc2d1);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: linear-gradient(135deg, #fbc531 0%, #a55eea 100%); /* Gradasi warna senja yang hangat */
+            background-attachment: fixed;
+            min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            margin: 0;
-            overflow: hidden;
-            color: #4a4a4a;
+            overflow-x: hidden;
+            padding: 20px;
         }
 
-        .card {
-            background: rgba(255, 255, 255, 0.9);
-            padding: 30px;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        /* Glassmorphic Card Container */
+        .container {
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            padding: 35px 25px;
+            border-radius: 30px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
             text-align: center;
-            max-width: 400px;
-            width: 80%;
+            max-width: 420px;
+            width: 100%;
             z-index: 10;
-            transition: transform 0.3s ease;
+            position: relative;
         }
 
-        .card:hover {
-            transform: scale(1.02);
+        .profile-img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border: 4px solid white;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            object-fit: cover;
+            margin-bottom: 15px;
         }
 
         h1 {
-            color: #ff477e;
-            font-size: 24px;
-            margin-bottom: 10px;
+            font-family: 'Caveat', cursive;
+            color: #4b33a8;
+            font-size: 42px;
+            margin-bottom: 5px;
         }
 
-        p {
-            font-size: 16px;
-            line-height: 1.6;
+        .subtitle {
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #747d8c;
+            margin-bottom: 25px;
+            font-weight: 600;
         }
 
-        .btn {
-            background-color: #ff7096;
-            color: white;
+        /* Content Sections */
+        .content-box {
+            min-height: 120px;
+            margin-bottom: 25px;
+            font-size: 15px;
+            line-height: 1.7;
+            color: #2f3542;
+        }
+
+        /* Navigation Tabs */
+        .nav-tabs {
+            display: flex;
+            justify-content: space-around;
+            background: rgba(255, 255, 255, 0.5);
+            padding: 8px;
+            border-radius: 20px;
+            margin-bottom: 20px;
+        }
+
+        .tab-btn {
+            background: none;
             border: none;
-            padding: 10px 20px;
-            border-radius: 25px;
+            padding: 8px 16px;
+            font-size: 13px;
+            font-weight: 600;
+            color: #747d8c;
             cursor: pointer;
-            font-size: 16px;
-            margin-top: 15px;
-            box-shadow: 0 4px 15px rgba(255, 112, 150, 0.4);
-            transition: 0.3s;
+            border-radius: 15px;
+            transition: all 0.3s ease;
         }
 
-        .btn:hover {
-            background-color: #ff477e;
+        .tab-btn.active {
+            background: #4b33a8;
+            color: white;
+            box-shadow: 0 4px 10px rgba(75, 51, 168, 0.3);
         }
 
-        /* Animasi Hati Jatuh */
-        .heart {
+        /* Floating Audio Control */
+        .audio-control {
             position: absolute;
-            color: #ff7096;
-            font-size: 20px;
-            animation: fall linear infinite;
-            top: -20px;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        /* Smooth Heart Particles */
+        .floating-heart {
+            position: absolute;
+            pointer-events: none;
+            animation: floatUp 4s linear forwards;
+            opacity: 0.8;
             z-index: 1;
         }
 
-        @keyframes fall {
-            to {
-                transform: translateY(105vh) rotate(360deg);
+        @keyframes floatUp {
+            0% {
+                transform: translateY(100vh) scale(0) rotate(0deg);
+                opacity: 0;
+            }
+            10% { opacity: 1; }
+            90% { opacity: 0.8; }
+            100% {
+                transform: translateY(-10vh) scale(1.3) rotate(360deg);
+                opacity: 0;
             }
         }
     </style>
 </head>
 <body>
 
-    <!-- Audio Musik (Ganti link src dengan lagu pilihanmu) -->
-    <audio id="bg-music" loop>
-        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+    <!-- Audio Player (Ganti URL mp3 dengan lagu favorit kalian berdua) -->
+    <audio id="romantic-music" loop>
+        <source src="https://pub-c5e31b5cdafb419a86a69d5d340a955c.r2.dev/SZA%20-%20Saturn.mp3" type="audio/mpeg">
     </audio>
 
-    <div class="card">
-        <h1>Happy Monthsary, Sayang! ❤️</h1>
-        <p id="pesan">Setiap hari bersamamu adalah hal terindah. Terima kasih sudah menjadi bagian terbaik dalam hidupku. Klik tombol di bawah untuk mendengarkan musik kita!</p>
-        <button class="btn" onclick="putarMusik()">Buka Pesan ✨</button>
+    <div class="container">
+        <button class="audio-control" onclick="toggleAudio()" id="musicBtn">🎵</button>
+        
+        <!-- Kamu bisa ganti pakai foto kalian berdua nanti, taruh sefolder atau pake link cloud -->
+        <img src="https://lh3.googleusercontent.com/d/1XgRzscY21l9u3K3WdYdE2R65VnI-qN7e" alt="Sayang" class="profile-img">
+        
+        <h1>I love you sayang ❤️</h1>
+        <div class="subtitle">Our Little Universe</div>
+
+        <div class="nav-tabs">
+            <button class="tab-btn active" onclick="switchTab('letter', this)">Surat</button>
+            <button class="tab-btn" onclick="switchTab('memories', this)">Memori</button>
+            <button class="tab-btn" onclick="switchTab('wishes', this)">Harapan</button>
+        </div>
+
+        <div class="content-box" id="content-display">
+            <!-- Default Content -->
+            Klik tombol musik di kanan atas 🎵 sambil baca ini ya. Terima kasih sudah menjadi alasan di balik senyumku setiap hari. Setiap momen bersamamu selalu berharga. ✨
+        </div>
     </div>
 
     <script>
-        function putarMusik() {
-            var audio = document.getElementById("bg-music");
-            audio.play();
-            
-            // Mengubah teks pesan setelah tombol diklik
-            document.getElementById("pesan").innerHTML = "Aku beruntung memilikimu. *I love you today, tomorrow, and forever.* Happy monthsary! 🌹";
+        const music = document.getElementById("romantic-music");
+        const musicBtn = document.getElementById("musicBtn");
+
+        const dataContent = {
+    letter: "Semoga kamu Happy, Sayang! ❤️<br>Sengaja bikin halaman web ini khusus buat kamu. Kenapa lewat QR? Biar keren aja padahal mah aslinya cuma mau bilang: *Aku sayang banget sama kamu.*",
+    memories: "📸 **Memory Check:**<br>Mau sedih, mau seneng, mau lagi marahan, tetep aja ujung-ujungnya aku kangennya cuma sama kamu. Makasih ya udah selalu sabar menghadapi segala random-nya aku.",
+    wishes: "💌 **Pesan Penting:**<br>Bonus QR ini: setelah di-scan, dilarang ngambek lagi ya! Mulai hari ini dan seterusnya, yuk kita kurang-kurangin gengsinya, banyakin bahagianya. *MAAFIN AKUU YAAAA BUB* 🌹"
+};
+
+        function switchTab(key, element) {
+            // Putar musik otomatis begitu interaksi pertama dimulai kalau belum menyala
+            if (music.paused) {
+                toggleAudio();
+            }
+
+            // Update teks konten dengan efek transisi sederhana
+            const display = document.getElementById("content-display");
+            display.style.opacity = 0;
+            setTimeout(() => {
+                display.innerHTML = dataContent[key];
+                display.style.opacity = 1;
+            }, 150);
+
+            // Ubah button active
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            element.classList.add('active');
         }
 
-        // Fungsi membuat animasi hati berjatuhan
-        function buatHati() {
-            const heart = document.createElement('div');
-            heart.classList.add('heart');
-            heart.innerHTML = '❤️';
-            heart.style.left = Math.random() * 100 + 'vw';
-            heart.style.animationDuration = Math.random() * 3 + 2 + 's';
-            heart.style.opacity = Math.random();
-            heart.style.fontSize = Math.random() * 20 + 10 + 'px';
+        function toggleAudio() {
+            if (music.paused) {
+                music.play();
+                musicBtn.innerText = "⏸️";
+                musicBtn.style.background = "#4b33a8";
+                musicBtn.style.color = "white";
+            } else {
+                music.pause();
+                musicBtn.innerText = "🎵";
+                musicBtn.style.background = "rgba(255, 255, 255, 0.9)";
+                musicBtn.style.color = "black";
+            }
+        }
+
+        // Efek animasi partikel hati & bintang yang naik ke atas lembut
+        function createParticle() {
+            const symbols = ['❤️', '✨', '🌸', '☁️'];
+            const particle = document.createElement('div');
+            particle.classList.add('floating-heart');
             
-            document.body.appendChild(heart);
+            // Pilih simbol random
+            particle.innerText = symbols[Math.floor(Math.random() * symbols.length)];
+            
+            particle.style.left = Math.random() * 100 + 'vw';
+            particle.style.animationDuration = Math.random() * 3 + 4 + 's'; // 4-7 detik biar lambat estetik
+            particle.style.fontSize = Math.random() * 15 + 12 + 'px';
+            
+            document.body.appendChild(particle);
 
             setTimeout(() => {
-                heart.remove();
-            }, 5000);
+                particle.remove();
+            }, 6000);
         }
 
-        setInterval(buatHati, 300);
+        // Jalankan partikel secara berkala
+        setInterval(createParticle, 400);
     </script>
 </body>
 </html>
